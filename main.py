@@ -20,10 +20,10 @@ pygame.display.set_caption("Title_holder")
 
 #movement
 
-test_x = 50
-test_y = 50
+chr_x = 50
+chr_y = 50
 width = 40
-height = 60
+height = 40
 vel = 5
 
 #main_loop
@@ -43,21 +43,21 @@ while running:
 
     keys = pygame.key.get_pressed()
 
-    if keys[pygame.K_w]:
-        test_y -= vel
+    if keys[pygame.K_w] and chr_y > vel:
+        chr_y -= vel
 
-    if keys[pygame.K_a]:
-        test_x -= vel
+    if keys[pygame.K_a] and chr_x > vel:
+        chr_x -= vel
 
-    if keys[pygame.K_s]:
-        test_y += vel
+    if keys[pygame.K_s] and chr_y < 500 - height - vel:
+        chr_y += vel
 
-    if keys[pygame.K_d]:
-        test_x += vel
+    if keys[pygame.K_d] and chr_x < 500 - vel - height:
+        chr_x += vel
 
 
     screen.fill((0,0,0))
-    pygame.draw.rect(screen, (255, 0, 0), (test_x, test_y, width, height))
+    pygame.draw.rect(screen, (255, 0, 0), (chr_x, chr_y, width, height))
     pygame.display.update()
     clock.tick(fps)
 
