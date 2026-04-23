@@ -1,0 +1,25 @@
+// list all pokemons you would like here, their type, and their possible evolutions, and mutations:
+
+
+// eg. (you can close this by hovering over 4 and clicking down arrow if there is one)
+
+    pickachu: 
+        evo: big, fat, very large
+            big: 1.2x damage against water mutations
+            fat: 1.3x damage against water mutations
+            very large: any water types that fight it die instantly
+
+        type: electricity
+
+        mutations: shiny, orange
+            shiny: absorb all incoming electricity forms of damage
+            orange: looks like an orange
+
+//
+
+
+
+
+
+
+

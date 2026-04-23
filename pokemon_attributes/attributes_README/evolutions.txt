@@ -1,0 +1,1 @@
+// list all evolutions that you would like here, and their abilities for each pokemon that can have them.
