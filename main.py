@@ -9,14 +9,17 @@ pygame.init()
 
 
 #frames setup
+
 clock = pygame.time.Clock()
 fps = 75
 
 #screen setup
+
 screen = pygame.display.set_mode((500, 500))
 pygame.display.set_caption("Title_holder")
 
 #movement
+
 test_x = 50
 test_y = 50
 width = 40
@@ -28,6 +31,7 @@ vel = 5
 running = True
     
 while running:
+
     pygame.time.delay(10)
 
     for event in pygame.event.get():
@@ -56,6 +60,7 @@ while running:
     pygame.draw.rect(screen, (255, 0, 0), (test_x, test_y, width, height))
     pygame.display.update()
     clock.tick(fps)
+
 
 pygame.quit
 
