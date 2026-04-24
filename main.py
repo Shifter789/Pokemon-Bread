@@ -8,17 +8,17 @@ import pygame
 
 pygame.init()
 
-#frames_setup    <-- percy what the hell is this, no space between the # and the comment? get better at commenting brochacho
+# frames_setup  
 
 clock = pygame.time.Clock()
 fps = 75
 
-#screen_setup    <-- percy what the hell is this, no space between the # and the comment? get better at commenting brochacho
+# screen_setup  
 
 screen = pygame.display.set_mode((500, 500))
 pygame.display.set_caption("Title_holder")
 
-#movement    <-- percy what the hell is this, no space between the # and the comment? get better at commenting brochacho
+# movement  
 
 chr_x = 50
 chr_y = 50
@@ -26,7 +26,7 @@ width = 40
 height = 40
 vel = 5
 
-#main_loop    <-- percy what the hell is this, no space between the # and the comment? get better at commenting brochacho
+# main_loop  
 
 running = True
     
@@ -39,11 +39,11 @@ while running:
             running = False
 
 
-    #keyboard_presses    <-- percy what the hell is this, no space between the # and the comment? get better at commenting brochacho
+    # keyboard_presses  
 
     keys = pygame.key.get_pressed()
 
-        #keyboard_movement_checks    <-- percy what the hell is this, no space between the # and the comment? get better at commenting brochacho
+        # keyboard_movement_checks  
         
     if keys[pygame.K_w] and chr_y > vel:
         chr_y -= vel
@@ -64,4 +64,5 @@ while running:
     clock.tick(fps)
 
 
-pygame.quit
+pygame.quit()
+

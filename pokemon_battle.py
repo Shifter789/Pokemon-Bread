@@ -5,7 +5,13 @@ class PokemonBattle:
     def __init__ (self, pokemon_a, pokemon_b):
         self.a = pokemon_a
         self.b = pokemon_b
-        self.attackTurn = 0
+        self.__attackTurn = 0 # private, 
 
     def turn(self):
         return self.attackTurn%2
+    
+    def incturn(self):
+        # increment turn 
+        self.__attackTurn += 1
+    
+    # NUMBA PIEEEEEE
