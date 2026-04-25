@@ -11,7 +11,9 @@ pygame.init()
 
 size=[500,500]
 clock = pygame.time.Clock()
-fps = 120
+
+monitor_hz = 0
+fps = monitor_hz if monitor_hz > 0 else 120
 
 # screen_setup    
 
@@ -30,8 +32,10 @@ bg_scaled = pygame.transform.smoothscale(bg, (500, 500))
 
 chr_x = 50.0
 chr_y = 50.0
+
 width = 40
 height = 40
+
 vel = 300
 
 # main_loop    
