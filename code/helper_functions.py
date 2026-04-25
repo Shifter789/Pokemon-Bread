@@ -1,3 +1,4 @@
+import pygame
 import ctypes
 import wmi
 from time import sleep
@@ -42,5 +43,5 @@ def get_monitor_refresh_rate():
         return monitor.MaxRefreshRate
     return 120
 
-
-
+def rescale(bg, w, h):
+    return pygame.transform.smoothscale(bg, (w, h))

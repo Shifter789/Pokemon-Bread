@@ -2,14 +2,14 @@
 # other files just import
 
 #import pokemon_battle as pokemon_battle
-import monitor_hz
+import helper_functions
 import pygame
-
+import os
 
 pygame.init()
 
 # frames_setup    
-size=[500,500]
+size = (500, 500)
 clock = pygame.time.Clock()
 
 
@@ -19,15 +19,16 @@ screen = pygame.display.set_mode(size, pygame.RESIZABLE)
 screen_full = False
 
 
-fps = (monitor_hz.get_monitor_refresh_rate() + 10)
+fps = helper_functions.get_monitor_refresh_rate()
 
 pygame.display.set_caption("Pokemon Green Apatite")
 pygame.mouse.set_visible(0)
 
 
 # images
-bg = pygame.image.load(r"assets\map\world.png").convert() # this is just for now later we need a bg with a resoultion of (4096, 4096)
-bg_scaled = pygame.transform.smoothscale(bg, (500, 500))
+bg = pygame.image.load(os.path.join("assets", "map", "world.png")).convert() # this is just for now later we need a bg with a resoultion of (4096, 4096)
+bg_scaled = helper_functions.rescale(bg, 500, 500)
+
 
 # movement    
 
@@ -41,6 +42,7 @@ vel = 300
 
 # main_loop    
 
+frame_count = 0
 dt = 0
 running = True
     
@@ -54,9 +56,9 @@ while running:
             running = False
 
         if event.type == pygame.VIDEORESIZE:
-            size = [event.w, event.h]
+            size = (event.w, event.h)
             screen = pygame.display.set_mode((event.w, event.h), pygame.RESIZABLE)
-            bg_scaled = pygame.transform.smoothscale(bg, (event.w, event.h))
+            bg_scaled = helper_functions.rescale(bg, event.w, event.h)
 
         # full_screen_toggle
 
@@ -66,10 +68,10 @@ while running:
 
                 if screen_full:
                     screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
-                    bg_scaled = pygame.transform.smoothscale(bg, (screen.get_width(), screen.get_height()))
+                    bg_scaled = helper_functions.rescale(bg, screen.get_width(), screen.get_height())
                 else:
                     screen = pygame.display.set_mode(size, pygame.RESIZABLE)
-                    bg_scaled = pygame.transform.smoothscale(bg, (size[0], size[1]))
+                    bg_scaled = helper_functions.rescale(bg, size[0], size[1])
 
 
     # screen updating
@@ -107,8 +109,9 @@ while running:
     
     screen.blit(bg_scaled, (0, 0))
 
-    #if round(clock.get_fps()) % 30 == 0:  # updates around every 30 frames
-    pygame.display.set_caption(f"Pokemon Green Apatite | FPS: {round(clock.get_fps())}") # fps counter yayy
+    frame_count += 1
+    if frame_count % 30 == 0:
+        pygame.display.set_caption(f"Pokemon Green Apatite | FPS: {round(clock.get_fps())}") # fps counter yayy
 
     pygame.draw.rect(screen, (255, 0, 0), (round(chr_x), round(chr_y), width, height))
 
