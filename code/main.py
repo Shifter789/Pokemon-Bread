@@ -3,6 +3,7 @@
 
 #import pokemon_battle as pokemon_battle
 import helper_functions
+import twoD as td
 import pygame
 import os
 
@@ -19,7 +20,7 @@ screen = pygame.display.set_mode(size, pygame.RESIZABLE)
 screen_full = False
 
 
-fps = helper_functions.get_monitor_refresh_rate()
+fps = 120
 
 pygame.display.set_caption("Pokemon Green Apatite")
 pygame.mouse.set_visible(0)
@@ -78,7 +79,6 @@ while running:
 
     screen_width = screen.get_width()
     screen_height = screen.get_height()
-
 
     # keyboard_presses    
 

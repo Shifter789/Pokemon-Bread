@@ -61,6 +61,9 @@ class Box:
         self.p3 = p3
         self.p4 = p4
 
+    def point_in_box(self, p):
+        pass
+
 
 
 class TDM:
@@ -68,7 +71,7 @@ class TDM:
 
     @staticmethod
     def slope(p1, p2):
-        return Vector2(p2.x - p1.x, p2.y - p1.y)
+        return Vector2(p2.x - p1.x, p2.y - p1.y) # yes, slopes are Vector2 now
     
     @staticmethod
     def is_perpendictular(p1, p2, o):
