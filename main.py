@@ -84,11 +84,14 @@ while running:
     if keys[pygame.K_d] and chr_x < screen_width - width:
         chr_x += vel
 
+
+        # player_repositon
     if chr_x > screen_width - width:
         chr_x = screen_width - width
 
     if chr_y > screen_height - height:
         chr_y = screen_height - height
+
 
     screen.fill((0,0,0))
     pygame.draw.rect(screen, (255, 255, 255), (chr_x, chr_y, width, height))
