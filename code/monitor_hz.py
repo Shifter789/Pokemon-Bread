@@ -35,6 +35,7 @@ class DEVMODEW(ctypes.Structure): # Defines the DEVMODEW Structure
     ("dmPanningHeight", ctypes.c_uint32)
 ]
 
+
 def get_monitor_refresh_rate():
     c = wmi.WMI()
     for monitor in c.Win32_VideoController():
