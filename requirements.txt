@@ -2,3 +2,4 @@ pygame
 wmi
 ctypes
 time
+os
