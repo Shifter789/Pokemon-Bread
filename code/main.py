@@ -20,7 +20,9 @@ screen = pygame.display.set_mode(size, pygame.RESIZABLE)
 screen_full = False
 
 
-fps = 120
+fps = helper_functions.get_monitor_refresh_rate()
+
+#fps = 120
 
 pygame.display.set_caption("Pokemon Green Apatite")
 pygame.mouse.set_visible(0)
