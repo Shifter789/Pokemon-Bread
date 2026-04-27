@@ -25,8 +25,9 @@ pygame.mouse.set_visible(0)
 
 # for vysnc and for other.
 
+fps = helper_functions.get_monitor_refresh_rate() + 10
 #fps = helper_functions.get_monitor_refresh_rate()
-fps = 120
+#fps = 120
 
 
 # images
@@ -57,7 +58,7 @@ player_y = float(player.rect.y)
 width = player.rect.width
 height = player.rect.height
 
-vel = 225
+vel = 180
 
 player_list = pygame.sprite.Group()
 player_list.add(player)
