@@ -2,8 +2,9 @@
 # other files just import
 
 #import pokemon_battle as pokemon_battle
+#import twoD as td
+
 import helper_functions
-import twoD as td
 import pygame
 import os
 
