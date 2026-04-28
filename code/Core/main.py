@@ -7,7 +7,6 @@
 import helper_functions
 import settings
 
-
 import pygame
 import os
 import enum
