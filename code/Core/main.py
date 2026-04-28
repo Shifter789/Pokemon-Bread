@@ -12,7 +12,7 @@ pygame.init()
 
 
 # frames_setup  
-  
+
 size = (500, 500)
 clock = pygame.time.Clock()
 
@@ -33,7 +33,7 @@ fps = helper_functions.get_monitor_refresh_rate() + 10
 # images
 bg = pygame.image.load(os.path.join("assets", "map", "world.png")).convert() # this is just for now later we need a bg with a resoultion of (4096, 4096)
 bg_scaled = helper_functions.rescale(bg, 500, 500)
-   
+
 
 class Player(pygame.sprite.Sprite):
 
