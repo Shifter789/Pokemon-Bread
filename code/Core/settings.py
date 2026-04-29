@@ -21,6 +21,7 @@ PLAYER_PATH = ("assets", "sprites", "Player.png")
 
 # colors
 BLACK = (0,   0,   0  )
+WHITE = (255, 255, 255)
 
 # controls
 KEY_UP       = "w"
