@@ -37,8 +37,8 @@ pygame.mouse.set_visible(0)
 
 
 # images
-bg = pygame.image.load(os.path.join(*settings.BG_PATH)).convert() # this is just for now later we need a bg with a resoultion of (4096, 4096)
-bg_scaled = helper_functions.rescale(bg, 500, 500)
+bg_overworld = pygame.image.load(os.path.join(*settings.BG_PATH_OVERWORLD)).convert() # this is just for now later we need a bg with a resoultion of (4096, 4096)
+bg_overworld_scaled = helper_functions.rescale(bg_overworld, 500, 500)
 
 
 class Player(pygame.sprite.Sprite):
@@ -72,63 +72,92 @@ player_list.add(player)
 #functions
 def handle_input(event, state):
 
-    global screen_full, screen, bg_scaled
+    if state == GameState.INTRO:
+        return GameState.MENU
+    
+    elif state == GameState.MENU:
+        return GameState.OVERWORLD
+    
+    elif state == GameState.OVERWORLD:
 
-    if event.type == pygame.VIDEORESIZE and pygame.version.vernum[0] < 2:
-            size = (event.w, event.h)
-            screen = pygame.display.set_mode((event.w, event.h), pygame.RESIZABLE)
-            bg_scaled = helper_functions.rescale(bg, event.w, event.h)
+        global screen_full, screen, bg_overworld_scaled
 
-    if event.type == pygame.KEYDOWN:
-        if event.key == pygame.K_F11:
-            screen_full = not screen_full
+        if event.type == pygame.VIDEORESIZE and pygame.version.vernum[0] < 2:
+                size = (event.w, event.h)
+                screen = pygame.display.set_mode((event.w, event.h), pygame.RESIZABLE)
+                bg_overworld_scaled = helper_functions.rescale(bg_overworld, event.w, event.h)
 
-            if screen_full:
-                screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
-                bg_scaled = helper_functions.rescale(bg, screen.get_width(), screen.get_height())
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_F11:
+                screen_full = not screen_full
 
-            else:
-                screen = pygame.display.set_mode(size, pygame.RESIZABLE)
-                bg_scaled = helper_functions.rescale(bg, size[0], size[1])
+                if screen_full:
+                    screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+                    bg_overworld_scaled = helper_functions.rescale(bg_overworld, screen.get_width(), screen.get_height())
 
-    pass
+                else:
+                    screen = pygame.display.set_mode(size, pygame.RESIZABLE)
+                    bg_overworld_scaled = helper_functions.rescale(bg_overworld, size[0], size[1])
+
+    return state
 
 def update(state, dt):
 
-    global player_x, player_y, frame_count, screen_width, screen_height
+    if state == GameState.INTRO:
 
-    keys = pygame.key.get_pressed()
+        pass
 
-    if keys[pygame.K_w] and player_y > 0:
-        player_y -= vel * dt
+    elif state == GameState.MENU:
 
-    if keys[pygame.K_a] and player_x > 0:
-        player_x -= vel * dt
+        pass
 
-    if keys[pygame.K_s] and player_y < screen_height - height:
-        player_y += vel * dt
+    elif state == GameState.OVERWORLD:
 
-    if keys[pygame.K_d] and player_x < screen_width - width:
-        player_x += vel * dt
+        global player_x, player_y, frame_count, screen_width, screen_height
+
+        keys = pygame.key.get_pressed()
+
+        if keys[pygame.K_w] and player_y > 0:
+            player_y -= vel * dt
+
+        if keys[pygame.K_a] and player_x > 0:
+            player_x -= vel * dt
+
+        if keys[pygame.K_s] and player_y < screen_height - height:
+            player_y += vel * dt
+
+        if keys[pygame.K_d] and player_x < screen_width - width:
+            player_x += vel * dt
 
 
-    # player_repositon
-    player_x = max(0, min(player_x, screen_width - width))
-    player_y = max(0, min(player_y, screen_height - height))
+        # player_repositon
+        player_x = max(0, min(player_x, screen_width - width))
+        player_y = max(0, min(player_y, screen_height - height))
 
-    player.rect.x = round(player_x) 
-    player.rect.y = round(player_y)
+        player.rect.x = round(player_x) 
+        player.rect.y = round(player_y)
 
-    frame_count += 1
-    if frame_count % 30 == 0:
-        pygame.display.set_caption(f"{settings.TITLE} | FPS: {round(clock.get_fps())}") # fps counter yayy
+        frame_count += 1
+        if frame_count % 30 == 0:
+            pygame.display.set_caption(f"{settings.TITLE} | FPS: {round(clock.get_fps())}") # fps counter yayy
 
     return state
 
 def draw(screen, state):
 
-    screen.blit(bg_scaled, (0, 0))
-    player_list.draw(screen)
+    if state == GameState.INTRO:
+        print("Splash Screen")
+
+
+    elif state == GameState.MENU:
+        print("Menu")
+
+
+    elif state == GameState.OVERWORLD:
+
+        screen.blit(bg_overworld_scaled, (0, 0))
+        player_list.draw(screen)
+
 
     pass
 
@@ -147,13 +176,13 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-        handle_input(event, state)
+        state = handle_input(event, state)
 
     screen_width = screen.get_width()
     screen_height = screen.get_height()
 
-    if (screen_width, screen_height) != bg_scaled.get_size():
-        bg_scaled = helper_functions.rescale(bg, screen_width, screen_height)
+    if (screen_width, screen_height) != bg_overworld_scaled.get_size():
+        bg_overworld_scaled = helper_functions.rescale(bg_overworld, screen_width, screen_height)
 
     state = update(state, dt)
 

@@ -16,7 +16,8 @@ FPS = helper_functions.get_monitor_refresh_rate() + 10
 PLAYER_SPEED = 155
 
 # assestets
-BG_PATH     = ("assets", "map", "world.png")
+BG_PATH_SPLASH = ("assets")
+BG_PATH_OVERWORLD = ("assets", "map", "world.png")
 PLAYER_PATH = ("assets", "sprites", "Player.png")
 
 # colors
