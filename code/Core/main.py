@@ -30,17 +30,16 @@ vel = settings.PLAYER_SPEED
 screen_full = settings.FULLSCREEN
 
 clock = pygame.time.Clock()
-
 screen = pygame.display.set_mode(size, pygame.RESIZABLE)
 pygame.display.set_caption(settings.TITLE)
 pygame.mouse.set_visible(0)
 
-
-# images
+# images setup
 bg_overworld = pygame.image.load(os.path.join(*settings.BG_PATH_OVERWORLD)).convert() # this is just for now later we need a bg with a resoultion of (4096, 4096)
 bg_overworld_scaled = helper_functions.rescale(bg_overworld, 500, 500)
 
 
+# player class
 class Player(pygame.sprite.Sprite):
 
     def __init__(self):
@@ -53,17 +52,20 @@ class Player(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
 
 
-# player
+# player setup
 player = Player()  
 
+# player movement
 player.rect.x = 0  
 player.rect.y = 0 
 player_x = float(player.rect.x)
 player_y = float(player.rect.y)
 
+#player config
 width = player.rect.width
 height = player.rect.height
 
+#players
 player_list = pygame.sprite.Group()
 player_list.add(player)
 
@@ -162,7 +164,7 @@ def draw(screen, state):
     pass
 
 
-#pre setup
+# pre setup
 frame_count = 0
 dt = 0
 running = True
