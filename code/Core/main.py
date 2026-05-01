@@ -74,7 +74,7 @@ player_list.add(player)
 
  
 #functions
-def handle_input(event, state):
+def handle_events(event, state):
 
     global screen_full, screen, bg_splash_scaled, bg_overworld_scaled
 
@@ -123,7 +123,7 @@ def handle_input(event, state):
 
     return state
 
-def update(state, dt):
+def input(state, dt):
 
     if state == GameState.SPLASH:
 
@@ -197,7 +197,7 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-        state = handle_input(event, state)
+        state = handle_events(event, state)
 
     screen_width = screen.get_width()
     screen_height = screen.get_height()
@@ -208,7 +208,7 @@ while running:
     elif (screen_width, screen_height) != bg_overworld_scaled.get_size():
         bg_overworld_scaled = helper_functions.rescale(bg_overworld, screen_width, screen_height)
 
-    state = update(state, dt)
+    state = input(state, dt)
 
     draw(screen, state)
     
