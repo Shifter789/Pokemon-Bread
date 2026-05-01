@@ -97,7 +97,8 @@ def handle_events(event, state):
                     screen = pygame.display.set_mode(size, pygame.RESIZABLE)
                     bg_splash_scaled = helper_functions.rescale(bg_splash, size[0], size[1])
 
-            return GameState.MENU
+            if event.key == pygame.K_RETURN:
+                return GameState.MENU
     
     elif state == GameState.MENU:
         return GameState.OVERWORLD
