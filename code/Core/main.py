@@ -11,13 +11,13 @@ import enum
 # state machine
 class GameState(enum.Enum):
 
-    INTRO = "splash"
+    SPLASH = "splash"
     MENU = "main_menu"
     OVERWORLD = "overworld"
     BATTLE = "battle"
     PAUSE_MENU = "pause_menu"
 
-state = GameState.INTRO
+state = GameState.SPLASH
 
 # inits
 pygame.init()
@@ -34,9 +34,11 @@ screen = pygame.display.set_mode(size, pygame.RESIZABLE)
 pygame.display.set_caption(settings.TITLE)
 pygame.mouse.set_visible(0)
 
-# images setup
 bg_overworld = pygame.image.load(os.path.join(*settings.BG_PATH_OVERWORLD)).convert() # this is just for now later we need a bg with a resoultion of (4096, 4096)
 bg_overworld_scaled = helper_functions.rescale(bg_overworld, 500, 500)
+
+bg_splash = pygame.image.load(os.path.join(*settings.BG_PATH_SPLASH)).convert()
+bg_splash_scaled = helper_functions.rescale(bg_splash, 500, 500)
 
 
 # player class
@@ -74,15 +76,33 @@ player_list.add(player)
 #functions
 def handle_input(event, state):
 
-    if state == GameState.INTRO:
-        return GameState.MENU
+    global screen_full, screen, bg_splash_scaled, bg_overworld_scaled
+
+    if state == GameState.SPLASH:
+
+        if event.type == pygame.VIDEORESIZE and pygame.version.vernum[0] < 2:
+            size = (event.w), event.h
+            screen = pygame.display.set_mode((event.w, event.h), pygame.RESIZABLE)
+            bg_splash_scaled = helper_functions.rescale(bg_splash, event.w, event.h)
+
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_F11:
+                screen_full = not screen_full
+
+                if screen_full:
+                    screen = pygame.display.set_mode((0,0), pygame.FULLSCREEN)
+                    bg_splash_scaled = helper_functions.rescale(bg_splash, screen.get_width(), screen.get_height())
+
+                else:
+                    screen = pygame.display.set_mode(size, pygame.RESIZABLE)
+                    bg_splash_scaled = helper_functions.rescale(bg_splash, size[0], size[1])
+
+            return GameState.MENU
     
     elif state == GameState.MENU:
         return GameState.OVERWORLD
     
     elif state == GameState.OVERWORLD:
-
-        global screen_full, screen, bg_overworld_scaled
 
         if event.type == pygame.VIDEORESIZE and pygame.version.vernum[0] < 2:
                 size = (event.w, event.h)
@@ -105,7 +125,7 @@ def handle_input(event, state):
 
 def update(state, dt):
 
-    if state == GameState.INTRO:
+    if state == GameState.SPLASH:
 
         pass
 
@@ -147,13 +167,12 @@ def update(state, dt):
 
 def draw(screen, state):
 
-    if state == GameState.INTRO:
-        print("Splash Screen")
+    if state == GameState.SPLASH:
 
+        screen.blit(bg_splash_scaled, (0, 0))
 
     elif state == GameState.MENU:
         print("Menu")
-
 
     elif state == GameState.OVERWORLD:
 
@@ -183,7 +202,10 @@ while running:
     screen_width = screen.get_width()
     screen_height = screen.get_height()
 
-    if (screen_width, screen_height) != bg_overworld_scaled.get_size():
+    if (screen_width, screen_height) != bg_splash_scaled.get_size():
+        bg_splash_scaled = helper_functions.rescale(bg_splash, screen_width, screen_height)
+
+    elif (screen_width, screen_height) != bg_overworld_scaled.get_size():
         bg_overworld_scaled = helper_functions.rescale(bg_overworld, screen_width, screen_height)
 
     state = update(state, dt)
