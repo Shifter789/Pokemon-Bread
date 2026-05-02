@@ -209,7 +209,7 @@ while running:
     if (screen_width, screen_height) != bg_splash_scaled.get_size():
         bg_splash_scaled = helper_functions.rescale(bg_splash, screen_width, screen_height)
 
-    elif (screen_width, screen_height) != bg_overworld_scaled.get_size():
+    if (screen_width, screen_height) != bg_overworld_scaled.get_size():
         bg_overworld_scaled = helper_functions.rescale(bg_overworld, screen_width, screen_height)
 
     state = input(state, dt)
