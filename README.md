@@ -13,7 +13,7 @@ jeet also probably doesn't want to get sued by nintendo
 
 IMPORTANT:
 requirements.txt must be fullfilled
-make your own .venv 
+make your own .venv Vishva we are gonna port this yee idiot
 
 
 
