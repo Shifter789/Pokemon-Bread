@@ -8,6 +8,8 @@ SCREEN_HEIGHT = 500
 TITLE = "Pokemon Green Apatite"
 ICON = ("assets", "sprites", "icon.png")
 
+FONT = ('freesansbold.ttf', 32)
+
 FULLSCREEN = False
 
 # performance
