@@ -4,7 +4,10 @@ import helper_functions
 # screen
 SCREEN_WIDTH = 500
 SCREEN_HEIGHT = 500
+
 TITLE = "Pokemon Green Apatite"
+ICON = ("assets", "sprites", "icon.png")
+
 FULLSCREEN = False
 
 # performance

@@ -34,6 +34,9 @@ screen = pygame.display.set_mode(size, pygame.RESIZABLE)
 pygame.display.set_caption(settings.TITLE)
 pygame.mouse.set_visible(0)
 
+icon = pygame.image.load(os.path.join(*settings.ICON)).convert_alpha()
+pygame.display.set_icon(icon)
+
 bg_overworld = pygame.image.load(os.path.join(*settings.BG_PATH_OVERWORLD)).convert() # this is just for now later we need a bg with a resoultion of (4096, 4096)
 bg_overworld_scaled = helper_functions.rescale(bg_overworld, 500, 500)
 
