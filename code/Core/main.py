@@ -76,7 +76,6 @@ height = player.rect.height
 player_list = pygame.sprite.Group()
 player_list.add(player)
 
-
  
 #functions
 def handle_events(event, state):
