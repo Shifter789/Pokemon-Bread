@@ -57,7 +57,6 @@ class Player(pygame.sprite.Sprite):
         self.image = self.images[0]
         self.rect = self.image.get_rect()
 
-
 # player setup
 player = Player()  
 
@@ -203,8 +202,7 @@ def draw(screen, state):
 # pre setup
 frame_count = 0
 dt = 0
-running = True
-    
+running = True 
 
 #loop start
 while running:
