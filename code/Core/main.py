@@ -78,7 +78,7 @@ player_list.add(player)
 #functions
 def handle_events(event, state):
 
-    global size, screen_full, screen, bg_splash_scaled, bg_overworld_scaled, splash_intro_text
+    global size, screen_full, screen, bg_splash_scaled, bg_overworld_scaled
 
     if state == GameState.SPLASH:
 
@@ -106,7 +106,10 @@ def handle_events(event, state):
                 return GameState.MENU
     
     elif state == GameState.MENU:
-        return GameState.OVERWORLD
+        
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_RETURN:
+                return GameState.OVERWORLD
     
     elif state == GameState.OVERWORLD:
 
@@ -137,7 +140,12 @@ def input(state, dt):
 
     elif state == GameState.MENU:
 
-        pass
+        keys = pygame.key.get_pressed()
+        
+        if keys[pygame.K_w]:
+            print("w")
+        if keys[pygame.K_s]:
+            print("s")
 
     elif state == GameState.OVERWORLD:
 
@@ -188,7 +196,9 @@ def draw(screen, state):
         screen.blit(splash_intro_text, (text_x, text_y))
 
     elif state == GameState.MENU:
-        print("Menu")
+        
+        screen.fill((125, 125, 125))
+
 
     elif state == GameState.OVERWORLD:
 
