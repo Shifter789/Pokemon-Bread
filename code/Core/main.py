@@ -37,7 +37,6 @@ pygame.mouse.set_visible(0)
 icon = pygame.image.load(os.path.join(*settings.ICON)).convert_alpha()
 pygame.display.set_icon(icon)
 
-font = pygame.font.Font(*settings.FONT)
 
 bg_overworld = pygame.image.load(os.path.join(*settings.BG_PATH_OVERWORLD)).convert() # this is just for now later we need a bg with a resoultion of (4096, 4096)
 bg_overworld_scaled = helper_functions.rescale(bg_overworld, 500, 500)
@@ -80,7 +79,7 @@ player_list.add(player)
 #functions
 def handle_events(event, state):
 
-    global screen_full, screen, bg_splash_scaled, bg_overworld_scaled
+    global size, screen_full, screen, bg_splash_scaled, bg_overworld_scaled, splash_intro_text
 
     if state == GameState.SPLASH:
 
@@ -88,6 +87,7 @@ def handle_events(event, state):
             size = (event.w), event.h
             screen = pygame.display.set_mode((event.w, event.h), pygame.RESIZABLE)
             bg_splash_scaled = helper_functions.rescale(bg_splash, event.w, event.h)
+
 
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_F11:
@@ -97,9 +97,11 @@ def handle_events(event, state):
                     screen = pygame.display.set_mode((0,0), pygame.FULLSCREEN)
                     bg_splash_scaled = helper_functions.rescale(bg_splash, screen.get_width(), screen.get_height())
 
+
                 else:
                     screen = pygame.display.set_mode(size, pygame.RESIZABLE)
                     bg_splash_scaled = helper_functions.rescale(bg_splash, size[0], size[1])
+
 
             if event.key == pygame.K_RETURN:
                 return GameState.MENU
@@ -175,6 +177,16 @@ def draw(screen, state):
     if state == GameState.SPLASH:
 
         screen.blit(bg_splash_scaled, (0, 0))
+
+
+        font_size = screen.get_width() // 30
+        scaled_font = pygame.font.Font(*settings.FONT[:-1], font_size)
+        splash_intro_text = scaled_font.render("Enter to begin the journey :)", True, (255, 255, 255))
+
+        text_x = (screen.get_width() - splash_intro_text.get_width()) // 2
+        text_y = (screen.get_height() - splash_intro_text.get_height()) // 1.8
+
+        screen.blit(splash_intro_text, (text_x, text_y))
 
     elif state == GameState.MENU:
         print("Menu")
