@@ -204,7 +204,7 @@ def draw(screen, state):
         
         screen.fill((150, 150, 150))
 
-        screen.blit(button_unclicked_scaled, (250, 250))
+        screen.blit(button_unclicked_scaled, (0, 0))
 
     elif state == GameState.OVERWORLD:
 
