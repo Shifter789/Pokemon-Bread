@@ -21,9 +21,19 @@ FPS = helper_functions.get_monitor_refresh_rate() + 10
 PLAYER_SPEED = 155
 
 # assets
+
+#splash
 BG_PATH_SPLASH = ("assets", "Splash", "Bg_Splash.png" )
+
+#menu
+MENU_BUTTON_UNCLICKED = ("assets", "Menu", "Button_unclicked.png")
+
+#overworld
 BG_PATH_OVERWORLD = ("assets", "map", "world.png")
+
+#misc
 PLAYER_PATH = ("assets", "sprites", "Player.png")
+
 
 # colors
 BLACK = (0,   0,   0  )
