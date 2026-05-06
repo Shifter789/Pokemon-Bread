@@ -196,7 +196,7 @@ def draw(screen, state):
         splash_intro_text = scaled_font.render("Enter to begin the journey :)", True, (255, 255, 255))
 
         text_x = (screen.get_width() - splash_intro_text.get_width()) // 2
-        text_y = (screen.get_height() - splash_intro_text.get_height()) // 1.8
+        text_y = int((screen.get_height() - splash_intro_text.get_height()) // 1.8)
 
         screen.blit(splash_intro_text, (text_x, text_y))
 
@@ -204,7 +204,7 @@ def draw(screen, state):
         
         screen.fill((150, 150, 150))
 
-        button_gap = button_unclicked_scaled.get_height() // 1.99
+        button_gap = int(button_unclicked_scaled.get_height() // 1.99)
 
         button_1_x = int((screen.get_width() - button_unclicked_scaled.get_width()) / 2)
         button_1_y = screen.get_height() // 900
@@ -247,8 +247,8 @@ while running:
     screen_width = screen.get_width()
     screen_height = screen.get_height()
 
-    button_width = screen_width // 1
-    button_height = screen_height // 1.8
+    button_width = screen_width // 3
+    button_height = int(screen_height // 1.8)
 
     if (screen_width, screen_height) != bg_splash_scaled.get_size():
         bg_splash_scaled = helper_functions.rescale(bg_splash, screen_width, screen_height)
