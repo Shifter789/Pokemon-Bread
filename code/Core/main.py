@@ -204,7 +204,21 @@ def draw(screen, state):
         
         screen.fill((150, 150, 150))
 
-        screen.blit(button_unclicked_scaled, (0, -50))
+        button_gap = button_unclicked_scaled.get_height() // 1.99
+
+        button_1_x = int((screen.get_width() - button_unclicked_scaled.get_width()) / 2)
+        button_1_y = screen.get_height() // 900
+
+        button_2_x = int((screen.get_width() - button_unclicked_scaled.get_width()) / 2)
+        button_2_y = button_1_y + button_gap
+
+        button_3_x = int((screen.get_width() - button_unclicked_scaled.get_width()) / 2)
+        button_3_y = button_2_y + button_gap
+
+        screen.blit(button_unclicked_scaled, (button_1_x, button_1_y))
+        screen.blit(button_unclicked_scaled, (button_2_x, button_2_y))
+        screen.blit(button_unclicked_scaled, (button_3_x, button_3_y))
+
 
     elif state == GameState.OVERWORLD:
 
@@ -233,8 +247,14 @@ while running:
     screen_width = screen.get_width()
     screen_height = screen.get_height()
 
+    button_width = screen_width // 1
+    button_height = screen_height // 1.8
+
     if (screen_width, screen_height) != bg_splash_scaled.get_size():
         bg_splash_scaled = helper_functions.rescale(bg_splash, screen_width, screen_height)
+
+    if (button_width, button_height) != button_unclicked_scaled.get_size():
+        button_unclicked_scaled = helper_functions.rescale(button_unclicked, button_width, button_height)
 
     if (screen_width, screen_height) != bg_overworld_scaled.get_size():
         bg_overworld_scaled = helper_functions.rescale(bg_overworld, screen_width, screen_height)
