@@ -89,7 +89,7 @@ def handle_events(event, state):
     if state == GameState.SPLASH:
 
         if event.type == pygame.VIDEORESIZE and pygame.version.vernum[0] < 2:
-            size = (event.w), event.h
+            size = event.w, event.h
             screen = pygame.display.set_mode((event.w, event.h), pygame.RESIZABLE)
             bg_splash_scaled = helper_functions.rescale(bg_splash, event.w, event.h)
 
@@ -113,6 +113,10 @@ def handle_events(event, state):
     
     elif state == GameState.MENU:
         
+        if event.type == pygame.VIDEORESIZE and pygame.version.vernum[0] < 2:
+            size = event.w, event.h
+            screen = pygame.display.set_mode((event.w, event.h), pygame.RESIZABLE)
+
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RETURN:
                 return GameState.OVERWORLD
