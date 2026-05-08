@@ -38,15 +38,15 @@ icon = pygame.image.load(os.path.join(*settings.ICON)).convert_alpha()
 pygame.display.set_icon(icon)
 
 
-#splash images
+# splash images
 bg_splash = pygame.image.load(os.path.join(*settings.BG_PATH_SPLASH)).convert()
 bg_splash_scaled = helper_functions.rescale(bg_splash, 500, 500)
 
-#menu images
+# menu images
 button_unclicked = pygame.image.load(os.path.join(*settings.MENU_BUTTON_UNCLICKED)).convert_alpha()
 button_unclicked_scaled = helper_functions.rescale(button_unclicked, 500, 500)
 
-#overworld images
+# overworld images
 bg_overworld = pygame.image.load(os.path.join(*settings.BG_PATH_OVERWORLD)).convert() # this is just for now later we need a bg with a resoultion of (4096, 4096)
 bg_overworld_scaled = helper_functions.rescale(bg_overworld, 500, 500)
 
@@ -72,7 +72,7 @@ player.rect.y = 0
 player_x = float(player.rect.x)
 player_y = float(player.rect.y)
 
-#player config
+# player config
 width = player.rect.width
 height = player.rect.height
 
@@ -81,7 +81,7 @@ player_list = pygame.sprite.Group()
 player_list.add(player)
 
  
-#functions
+# functions
 def handle_events(event, state):
 
     global size, screen_full, screen, bg_splash_scaled, bg_overworld_scaled
@@ -256,7 +256,7 @@ frame_count = 0
 dt = 0
 running = True 
 
-#loop start
+# loop start
 while running:
 
     for event in pygame.event.get():
