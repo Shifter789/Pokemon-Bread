@@ -223,6 +223,26 @@ def draw(screen, state):
         screen.blit(button_unclicked_scaled, (button_2_x, button_2_y))
         screen.blit(button_unclicked_scaled, (button_3_x, button_3_y))
 
+        font_size = screen.get_width() // 30
+        scaled_font = pygame.font.Font(*settings.FONT[:-1], font_size)
+
+        New_game_text = scaled_font.render("New Game", True, (0, 0, 0))
+        Load_game_text = scaled_font.render("Load game", True, (0, 0, 0))
+        Settings_text = scaled_font.render("Settings", True, (0, 0, 0))
+        
+        New_game_text_x = button_1_x + (button_unclicked_scaled.get_width() - New_game_text.get_width()) // 2
+        New_game_text_y = button_1_y + (button_unclicked_scaled.get_height() - New_game_text.get_height()) // 2.3
+        Load_game_text_x = button_2_x + (button_unclicked_scaled.get_width() - Load_game_text.get_width()) // 2
+        Load_game_text_y = button_2_y + (button_unclicked_scaled.get_height() - Load_game_text.get_height()) // 2.3
+        Settings_text_x = button_3_x + (button_unclicked_scaled.get_width() - Settings_text.get_width()) // 2
+        Settings_text_y = button_3_y + (button_unclicked_scaled.get_height() - Settings_text.get_height()) // 2.3
+
+        screen.blit(New_game_text, (New_game_text_x, New_game_text_y))
+        screen.blit(Load_game_text, (Load_game_text_x, Load_game_text_y))
+        screen.blit(Settings_text, (Settings_text_x, Settings_text_y))
+
+
+
 
     elif state == GameState.OVERWORLD:
 
