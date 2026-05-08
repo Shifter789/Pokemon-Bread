@@ -242,8 +242,6 @@ def draw(screen, state):
         screen.blit(Settings_text, (Settings_text_x, Settings_text_y))
 
 
-
-
     elif state == GameState.OVERWORLD:
 
         screen.blit(bg_overworld_scaled, (0, 0))
